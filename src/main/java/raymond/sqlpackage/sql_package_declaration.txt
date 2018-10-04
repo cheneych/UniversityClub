@@ -1,0 +1,25 @@
+CREATE OR REPLACE PACKAGE RAYMOND.TEST AS
+-- Package header
+PROCEDURE add_info (booking_name IN VARCHAR2, post IN VARCHAR2, id IN NUMBER);
+
+FUNCTION create_res (custid IN NUMBER, newdate IN DATE) RETURN NUMBER;
+
+FUNCTION add_func_info (id IN NUMBER, fname IN VARCHAR2, gua IN NUMBER, expected IN NUMBER, setno IN NUMBER, postas IN VARCHAR2, stype IN NUMBER) RETURN NUMBER;
+
+PROCEDURE add_room_start_end_time (id IN NUMBER, starttime IN DATE, endtime IN date); 
+
+PROCEDURE add_room_occupied (id IN NUMBER, fid IN NUMBER);
+
+PROCEDURE add_items (fid in NUMBER, catogory in NUMBER, timeid in NUMBER, unitcost in NUMBER, 
+					 totalcost in NUMBER, qty in NUMBER, itemid in NUMBER, name IN VARCHAR2, subcatogory in  NUMBER
+					);
+
+fUNCTION add_time (fid in NUMBER, catogory in NUMBER, starttime in DATE, endtime in DATE) RETURN NUMBER;
+
+PROCEDURE updateItems (itemid in NUMBER, unitcost in NUMBER, totalcost in NUMBER, qty in NUMBER);
+
+PROCEDURE delItems (id in NUMBER, flag IN NUMBER);
+
+PROCEDURE evt_start_end_time(datetime IN DATE, id IN NUMBER);
+
+END TEST;

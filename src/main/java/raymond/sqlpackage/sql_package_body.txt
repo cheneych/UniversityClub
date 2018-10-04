@@ -1,0 +1,118 @@
+CREATE OR REPLACE PACKAGE BODY RAYMOND.TEST AS
+-- Package body
+PROCEDURE add_info (booking_name IN VARCHAR2, post IN VARCHAR2, id IN NUMBER) IS
+BEGIN
+	MERGE INTO EVENT A
+	USING (SELECT id AS eid FROM dual) B
+	ON (A.evtid=B.eid)
+	WHEN MATCHED THEN
+	UPDATE SET 
+	A.EVTNAME=booking_name, A.POSTAS=post 
+	WHEN NOT MATCHED THEN
+	INSERT (A.EVTNAME, A.POSTAS) VALUES(booking_name, post);
+END;
+
+FUNCTION create_res (custid IN NUMBER, newdate IN DATE) 
+RETURN NUMBER IS
+NID NUMBER;
+BEGIN   
+	INSERT INTO EVENT (CUSTID, CONFDATE2) VALUES (custid, newdate);
+	SELECT event_sequence.CURRVAL INTO NID FROM dual;
+	RETURN NID;
+END;
+
+FUNCTION add_func_info (id IN NUMBER, fname IN VARCHAR2, gua IN NUMBER, expected IN NUMBER, setno IN NUMBER, postas IN VARCHAR2, stype IN NUMBER) 
+RETURN NUMBER IS
+NID NUMBER;
+BEGIN  
+	MERGE INTO FUNCT A
+	USING (SELECT id AS fid FROM dual) B
+	ON (A.evtid=B.fid)
+	WHEN MATCHED THEN 
+	UPDATE SET 
+	A.functname=fname, A.FUNCTGTDNUMPPL=gua, A.FUNCTEXPNUMPPL=expected, A.FUNCTACTNUMPPL=setno, A.POSTFUNCTAS=postas, A.SETUPTYPE=stype
+	WHEN NOT MATCHED THEN
+	INSERT (A.EVTID, A.FUNCTNAME, A.FUNCTGTDNUMPPL, A.FUNCTEXPNUMPPL, A.FUNCTACTNUMPPL, A.POSTFUNCTAS, A.SETUPTYPE) VALUES (id, fname, gua, expected, setno, postas, stype);
+	SELECT funct_sequence.CURRVAL INTO NID FROM dual;
+	RETURN NID;
+END;
+
+PROCEDURE add_room_start_end_time (id IN NUMBER, starttime IN DATE, endtime IN date) IS
+BEGIN
+	MERGE INTO FUNCT A
+	USING (SELECT id AS fid FROM dual) B
+	ON (A.FUNCTID=B.fid)
+	WHEN MATCHED THEN 
+	UPDATE SET 
+	A.STARTTIME2=starttime, A.ENDTIME2=endtime, A.STARTDATE2=starttime
+	WHEN NOT MATCHED THEN
+	INSERT (A.STARTTIME2, A.ENDTIME2, A.STARTDATE2) VALUES (starttime, endtime, starttime);
+END;
+
+PROCEDURE add_room_occupied (id IN NUMBER, fid IN NUMBER) IS
+BEGIN
+	MERGE INTO TSLTT A
+	USING (SELECT fid AS ffid FROM dual) B
+	ON (A.FUNCTID=B.ffid)
+	WHEN MATCHED THEN
+	UPDATE SET
+	A.FRID=id
+	WHEN NOT MATCHED THEN 
+ 	INSERT (A.FRID, A.FUNCTID) VALUES (id, fid);
+END;
+
+
+PROCEDURE add_items (fid in NUMBER, catogory in NUMBER, timeid in NUMBER, unitcost in NUMBER, 
+					 totalcost in NUMBER, qty in NUMBER, itemid in NUMBER, name IN VARCHAR2, subcatogory in  NUMBER
+					) IS
+BEGIN
+	INSERT INTO servitems (functid, headertypeid, servtimeid, servitemchrg, servitemcost,
+						   servitemqty, itemsetupid, SERVITEMNAME, servtype) 
+	VALUES                (fid,     catogory,     timeid,     unitcost,     totalcost,
+		                   qty,         itemid,     name, subcatogory);
+END;
+
+
+FUNCTION add_time (fid in NUMBER, catogory in NUMBER, starttime in DATE, endtime in DATE) 
+RETURN NUMBER IS
+NID NUMBER;
+BEGIN
+	INSERT INTO servtime (functid, headertype, servtime2, servendtime2)
+	VALUES               (fid,     catogory,   starttime, endtime);
+	SELECT servtime_sequence.CURRVAL INTO NID FROM dual;
+	RETURN NID;
+END;
+
+PROCEDURE updateItems (itemid in NUMBER, unitcost in NUMBER, totalcost in NUMBER, qty in NUMBER
+					  ) IS
+BEGIN
+	MERGE INTO SERVITEMS A
+	USING (SELECT itemid AS id FROM DUAL) B
+	ON (A.SERVITEMID = B.id)
+	WHEN MATCHED THEN 
+	UPDATE SET 
+	A.SERVITEMCHRG =  unitcost, A.SERVITEMCOST = totalcost,  A.SERVITEMQTY = qty
+	WHEN NOT MATCHED THEN
+	INSERT (A.SERVITEMCHRG, A.SERVITEMCOST, A.SERVITEMQTY) VALUES (unitcost, totalcost, qty);
+END;
+
+PROCEDURE delItems (id in NUMBER, flag IN NUMBER) IS
+BEGIN
+	IF (flag = 0) THEN 
+		DELETE FROM servitems WHERE SERVITEMID = id;
+	 ELSE 
+		DELETE FROM servitems WHERE SERVTIMEID = id;
+	 END IF;
+END;
+
+PROCEDURE evt_start_end_time(datetime IN DATE, id IN NUMBER) IS
+BEGIN
+	MERGE INTO event A
+	USING (SELECT id AS eid FROM dual) B
+	ON (A.evtid = B.eid)
+	WHEN MATCHED THEN
+	UPDATE SET
+	A.evtstart2 = datetime, A.evtend2 = datetime;
+END ;
+
+END TEST;

@@ -1,0 +1,31 @@
+@import "mytheme.scss";
+@import "addons.scss";
+
+// This file prefixes all rules with the theme name to avoid causing conflicts with other themes.
+// The actual styles should be defined in mytheme.scss
+
+.mytheme {
+  @include addons;
+  @include mytheme;
+  
+	.v-treegrid-cell.gray{
+		background-color:gray;
+		color:gray;
+	}
+		
+	.v-treegrid-cell.red{
+		background-color:red;
+		color:red;
+	}
+	
+	.v-treegrid-cell.room{
+		text-align:left;
+	}
+	//.test{
+	//border:1px black solid;
+	//}
+	//. button-test{
+	//}
+	}
+	
+}

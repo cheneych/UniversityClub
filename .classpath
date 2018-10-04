@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/classes" path="target/generated-resources/gwt">
+		<attributes>
+			<attribute name="ignore_optional_problems" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/ESP2000/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ccv5f/eclipse-workspace/contracts/contracts/sql/WebContent/WEB-INF/lib/sqljdbc42.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/com.ibm.icu_58.2.0.v20170418-1837.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/com.lowagie.text_2.1.7.v201004222200.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/flute.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/javax.wsdl_1.5.1.v201012040544.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/javax.xml.stream_1.0.1.v201004272200.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/javax.xml_1.3.4.v201005080400.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/net.sourceforge.lpg.lpgjavaruntime_1.1.0.v201004271650.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.bridge_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.css_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.dom.svg_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.dom_1.7.1.v201505191845.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.ext.awt.extension_1.7.0.v201806261756.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.ext.awt_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.parser_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.svggen_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.transcoder_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.util.gui_1.7.0.v200903091627.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.util_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.batik.xml_1.7.0.v201011041433.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.commons.codec_1.9.0.v20170208-1614.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.commons.logging_1.1.1.v201101211721.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.derby_10.11.1.1_v201605202053.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.felix.scr_2.0.14.v20180117-1452.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.lucene.analyzers-common_6.1.0.v20161115-1612.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.lucene.core_6.1.0.v20170814-1820.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.lucene.queryparser_6.1.0.v20161115-1612.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.poi_3.9.0.v201405241750.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.xerces_2.9.0.v201101211617.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.xml.resolver_1.2.0.v201005080400.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.apache.xml.serializer_2.7.1.v201005080400.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.birt.runtime_4.8.0-20180626.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.core.contenttype_3.7.0.v20180426-1644.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.core.expressions_3.6.100.v20180426-1644.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.core.filesystem_1.7.100.v20180304-1102.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.core.jobs_3.10.0.v20180427-1454.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.core.resources_3.13.0.v20180512-1138.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.core.runtime_3.14.0.v20180417-0825.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.apache.derby.dbdefinition_1.2.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.apache.derby_1.2.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.console.profile_1.2.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.db.generic_1.2.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.dbdefinition.genericJDBC_1.2.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.oda.consumer_3.4.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.oda.design_3.5.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.oda.flatfile_3.3.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.oda.profile_3.4.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.oda_3.6.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity.sqm.core_1.4.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.datatools.connectivity_1.14.1.201712071719.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.emf.common_2.14.0.v20180527-1134.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.emf.ecore.change_2.12.0.v20180125-1130.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.emf.ecore.xmi_2.14.0.v20180129-1548.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.emf.ecore_2.14.0.v20180529-1144.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.app_1.3.500.v20171221-2204.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.common_3.10.0.v20180412-1130.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.ds_1.5.100.v20171221-2204.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.event_1.4.200.v20180426-0845.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.frameworkadmin.equinox_1.1.0.v20180512-1128.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.frameworkadmin_2.1.0.v20180131-0638.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.preferences_3.7.100.v20180510-1129.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.registry_3.8.0.v20180426-1327.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.security_1.2.400.v20171221-2204.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.simpleconfigurator.manipulator_2.1.0.v20180103-0918.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.equinox.simpleconfigurator_1.3.0.v20180502-1828.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.help_3.8.100.v20180512-1136.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.orbit.mongodb_3.2.2.v20170222-2110.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.osgi.services_3.7.0.v20180223-1712.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.osgi.util_3.5.0.v20180219-1511.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.osgi_3.13.0.v20180409-1500.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.eclipse.update.configurator_3.4.0.v20180512-1141.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.mozilla.javascript_1.7.5.v201504281450.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.sat4j.core_2.3.5.v201308161310.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.sat4j.pb_2.3.5.v201404071733.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.tukaani.xz_1.8.0.v20180207-1613.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.w3c.css.sac_1.3.1.v200903091627.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.w3c.dom.events_3.0.0.draft20060413_v201105210656.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.w3c.dom.smil_1.0.1.v200903091627.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.w3c.dom.svg.extension_1.1.0.v201806261756.jar"/>
+	<classpathentry kind="lib" path="C:/birt4.8/ReportEngine/lib/org.w3c.dom.svg_1.1.0.v201011041433.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
