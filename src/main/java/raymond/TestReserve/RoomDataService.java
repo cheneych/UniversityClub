@@ -11,6 +11,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.jsoup.select.Evaluator.IsEmpty;
+
 import com.vaadin.data.Result;
 import com.vaadin.server.VaadinService;
 
@@ -29,6 +31,7 @@ public class RoomDataService extends DataService<Room> {
 	public RoomDataService(String st) {
 		super(Pools.getConnectionPool(Names.RAYMOND));
 		//System.out.println("enter ser");
+		roomList.clear();
 		try (Connection conn = dataSource.getConnection()) {
 			try (PreparedStatement stmt = conn.prepareStatement("SELECT FRNAME, FRSPRID FROM SFRDT")) {
 				try (ResultSet rs = stmt.executeQuery()) {
@@ -55,7 +58,8 @@ public class RoomDataService extends DataService<Room> {
 						String str=(getString(rs,i++));
 						System.out.println(str);
 						System.out.println(roomList.size());
-						for (int j=0;j<roomList.size();j++)
+						for (int j=0;j<roomList.size();j++) {
+							if (roomList.get(j).getRoom() == null) break;
 							if (roomList.get(j).getRoom().equals(str)) {
 								LocalTime ts=getLocalTime(rs, i++);
 								String s=ts.toString();
@@ -93,6 +97,7 @@ public class RoomDataService extends DataService<Room> {
 								if (23>=ks && 23<ke) roomList.get(j).setP11(true); else roomList.get(j).setP11(false);
 								roomList.get(j).setP12(false);
 							} 
+					}
 					}
 				}
 			}

@@ -108,7 +108,7 @@ public class InfoView extends TopBarView implements View {
 	TreeGrid<Orderitems> treeGrid=new TreeGrid<>();
 	TreeDataProvider<Orderitems> dataProvider = (TreeDataProvider<Orderitems>) treeGrid.getDataProvider();
 	TreeData<Orderitems> data = dataProvider.getTreeData();
-	Button items_modify = new Button("Add more items");
+	Button items_modify = new Button("Add");
 	public OrderForm itemsform=new OrderForm(this);
 		//Charges
 	Label tit = new Label("Summaryof Charges");
@@ -121,20 +121,25 @@ public class InfoView extends TopBarView implements View {
 	public void init()  {
 		eventProcess();
 		dataProcess();
+		charges.setStyleName("gd"); treeGrid.setStyleName("tgd");
+		evt_modify.setStyleName("button"); evt_modify.setIcon(VaadinIcons.FILE_REFRESH);
+		room_modify.setStyleName("button"); room_modify.setIcon(VaadinIcons.FILE_REFRESH);
+		items_modify.setStyleName("button"); items_modify.setIcon(VaadinIcons.FILE_REFRESH);
+		tabsheet.setStyleName("ts");
 		GridLayout grid=new GridLayout(3,7);
 		grid.addComponent(uc,0,0);
-		grid.addComponent(dt,0,3);
-		grid.addComponent(status,0,4);
-		grid.addComponent(confirmDt,0,5);
-		grid.addComponent(bookName,1,0);
-		grid.addComponent(postAs,1,1);
-		grid.addComponent(bookId,1,2);
-		grid.addComponent(funcName,1,3);
-		grid.addComponent(functPost,1,4);
-		grid.addComponent(funcId,1,5);
+		grid.addComponent(dt,0,3);        dt.setIcon(VaadinIcons.CALENDAR);
+		grid.addComponent(status,0,4);    status.setIcon(VaadinIcons.OPTION);
+		grid.addComponent(confirmDt,0,5); confirmDt.setIcon(VaadinIcons.DATE_INPUT);
+		grid.addComponent(bookName,1,0);  bookName.setIcon(VaadinIcons.TABS);	
+		grid.addComponent(postAs,1,1);    postAs.setIcon(VaadinIcons.PIN_POST);
+		grid.addComponent(bookId,1,2);	  bookId.setIcon(VaadinIcons.CODE);
+		grid.addComponent(funcName,1,3);  funcName.setIcon(VaadinIcons.USER);
+		grid.addComponent(functPost,1,4); functPost.setIcon(VaadinIcons.PIN_POST);
+		grid.addComponent(funcId,1,5); funcId.setIcon(VaadinIcons.CODE);
 		grid.addComponent(evt_modify,2,6);
 
-		tabsheet.addTab(grid,"Evt Info");
+		tabsheet.addTab(grid,"Event");
 		
 		VerticalLayout tab2=new VerticalLayout();
 		HorizontalLayout l1=new HorizontalLayout();
@@ -142,32 +147,43 @@ public class InfoView extends TopBarView implements View {
 		HorizontalLayout l3=new HorizontalLayout();
 		HorizontalLayout l4=new HorizontalLayout();
 		HorizontalLayout l5=new HorizontalLayout();
-		l1.addComponents(cname,phone,fax,cmail);
+		l1.addComponents(cname,phone,fax,cmail); 
+		cname.setIcon(VaadinIcons.USER); phone.setIcon(VaadinIcons.PHONE); fax.setIcon(VaadinIcons.PHONE);
+		cmail.setIcon(VaadinIcons.MAILBOX);
 		l2.addComponents(add1,add2,city,state,zip,country);
+		add1.setIcon(VaadinIcons.ROAD); add2.setIcon(VaadinIcons.ROAD); city.setIcon(VaadinIcons.LOCATION_ARROW_CIRCLE);
+		state.setIcon(VaadinIcons.LOCATION_ARROW_CIRCLE); zip.setIcon(VaadinIcons.FILE_ZIP); country.setIcon(VaadinIcons.LOCATION_ARROW_CIRCLE);
 		l3.addComponents(add1b,add2b,cityb,stateb,zipb,countryb);
+		add1b.setIcon(VaadinIcons.ROAD); add2b.setIcon(VaadinIcons.ROAD); cityb.setIcon(VaadinIcons.LOCATION_ARROW_CIRCLE);
+		stateb.setIcon(VaadinIcons.LOCATION_ARROW_CIRCLE); zipb.setIcon(VaadinIcons.FILE_ZIP); countryb.setIcon(VaadinIcons.LOCATION_ARROW_CIRCLE);
 //		l2.addComponents(contact,sPhone,mail);
 //		l3.addComponents(osContact,sPer,bookMgr);
 //		l4.addComponents(st,et);
 //		l5.addComponents(exp,gua,style,room, sec);
 		tab2.addComponents(cusInfo,l1,cusAdd1,l2,cusAdd2,l3,cusAct,l4);
-		tabsheet.addTab(tab2,"Customer Info");
+		tabsheet.addTab(tab2,"Customer");
 		//sales
 		VerticalLayout tab3=new VerticalLayout();
 		HorizontalLayout l6 = new HorizontalLayout();
 		HorizontalLayout l7 = new HorizontalLayout();
 		l6.addComponents(firstname, lastname);
+		firstname.setIcon(VaadinIcons.USER); lastname.setIcon(VaadinIcons.USER);
 		l7.addComponents(title, mail);
+		title.setIcon(VaadinIcons.USER_CARD); mail.setIcon(VaadinIcons.MAILBOX);
 		tab3.addComponents(l6, l7);
-		tabsheet.addTab(tab3,"Sales Info");
+		tabsheet.addTab(tab3,"Sales");
 		//room
 		VerticalLayout tab4=new VerticalLayout();
 		HorizontalLayout l8 = new HorizontalLayout();
 		HorizontalLayout l9 = new HorizontalLayout();
 		HorizontalLayout l10 = new HorizontalLayout();
 		l8.addComponents(st, et); l9.addComponents(exp, gua, act); l10.addComponents(style, room, sec);
-		notes.setSizeFull();
+		st.setIcon(VaadinIcons.CALENDAR_CLOCK); et.setIcon(VaadinIcons.CALENDAR_CLOCK);
+		exp.setIcon(VaadinIcons.SCALE); gua.setIcon(VaadinIcons.SCALE); act.setIcon(VaadinIcons.SCALE);
+		style.setIcon(VaadinIcons.LAYOUT); room.setIcon(VaadinIcons.LOCATION_ARROW_CIRCLE); sec.setIcon(VaadinIcons.LOCATION_ARROW_CIRCLE);
+		notes.setSizeFull(); notes.setIcon(VaadinIcons.NOTEBOOK);
 		tab4.addComponents(l8, l9, l10, notes, room_modify);
-		tabsheet.addTab(tab4,"Room Info");
+		tabsheet.addTab(tab4,"Room");
 		
 		VerticalLayout tab5=new VerticalLayout();
 		HorizontalLayout l11 = new HorizontalLayout();
@@ -175,7 +191,7 @@ public class InfoView extends TopBarView implements View {
 		tab5.addComponents(treeGrid, l11);
 		l11.setSizeFull();
 		l11.setComponentAlignment(items_modify, Alignment.TOP_RIGHT);
-		tabsheet.addTab(tab5,"Items Info");
+		tabsheet.addTab(tab5,"Items");
 		
 		VerticalLayout tab6=new VerticalLayout();
 		tab6.addComponents(tit, charges);

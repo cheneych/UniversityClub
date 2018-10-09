@@ -17,7 +17,9 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinService;
+import com.vaadin.shared.Position;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
@@ -27,6 +29,7 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.TreeGrid;
 import com.vaadin.ui.VerticalLayout;
@@ -55,18 +58,18 @@ import com.vaadin.external.org.slf4j.LoggerFactory;
 public class FinalView extends TopBarView implements View {
 	
 	Label question = new Label("Would you like to generate pdf files and email? Click below!");
-	Button yes = new Button("Yes, go ahead");
-	Button no = new Button("Back home");
-	TextArea info = new TextArea();
+	Button yes = new Button("YES");
+	//TextArea info = new TextArea();
 	
 	public FinalView()  {
 		init();
 	}
 
 	public void init()  {
+		yes.setStyleName("button");  yes.setIcon(VaadinIcons.ARROW_FORWARD);
 		eventProcess();
 		dataProcess();
-		addComponents(no, question, yes, info);
+		addComponents(question, yes);
 	}
 
 	private void eventProcess() {	
@@ -75,24 +78,36 @@ public class FinalView extends TopBarView implements View {
 		});
 		
 		yes.addClickListener(e->{
+			boolean flag = false;
 			String s = "pdf generated";
 			try {
 				ExecuteReport.main();
 			} catch (Exception e1) {
-				info.setValue("Error while generating pdf");
+				flag = true;
+				Notification notif = new Notification("Error", "Error while generating pdf", 
+				Notification.TYPE_ERROR_MESSAGE);
+				notif.setStyleName("mystyle"); //change css of the notif
+				notif.setDelayMsec(5000);
+				notif.setPosition(Position.MIDDLE_CENTER);
+				notif.show(Page.getCurrent()); 
 			}
 			try {
 				SendFileEmail.main();
 			} catch (Exception e1) {
-				info.setValue(s + "\n" + "Error while sending email");
+				flag = true;
+				Notification notif = new Notification("Error", "Error while sending email", 
+				Notification.TYPE_ERROR_MESSAGE);
+				notif.setStyleName("mystyle"); //change css of the notif
+				notif.setDelayMsec(5000);
+				notif.setPosition(Position.MIDDLE_CENTER);
+				notif.show(Page.getCurrent()); 
 			}
-			info.setValue(s + "\n" + "mail sent");
-
-			
-		});
-		
-		no.addClickListener(e->{
-			MyUI.navigateTo("home");
+			if (!flag) {
+				Notification notif = new Notification("Successful", "mail sent", Notification.TYPE_TRAY_NOTIFICATION);
+				notif.setStyleName("mystyle"); //change css of the notif
+				notif.setPosition(Position.MIDDLE_CENTER);
+				notif.show(Page.getCurrent()); 
+			}
 		});
 	}
 

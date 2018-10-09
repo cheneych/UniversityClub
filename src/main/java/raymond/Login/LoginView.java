@@ -36,9 +36,11 @@ import com.vaadin.ui.VerticalLayout;
 //import muop.missouri.edu.contracts.ui.desktop.TopBarView;
 
 import raymond.Test.MyUI;
+import raymond.Test.RaymondNavigatorViewProvider;
 import raymond.Test.TopBarView;
 import raymond.Test.User;
 import raymond.Test.User.UserAttribute;
+import raymond.TestDB.Pools;
 
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -177,139 +179,139 @@ public class LoginView extends TopBarView implements View {
 		
 		Authenticator authenticator = new Authenticator();
 		User.setUser(new User());
-		MyUI.navigateTo("home");
 
-	/*	if (authenticator.authenticate(userName.getValue().toLowerCase(), password.getValue(), User.getUser())) {
+		if (authenticator.authenticate(userName.getValue().toLowerCase(), password.getValue(), User.getUser())) {
 		
 			User u = User.getUser();		
 			ArrayList<String> security = new ArrayList<String>();
 			Connection c = null;
+			MyUI.navigateTo("home");
 			
-			try {				
-				c = Pools.getConnection(Pools.Names.CONTRACT);
-				try (PreparedStatement stmt = c
-						.prepareStatement("select * from PERSONS where SSO_ID = ? AND ISACTIVE = 1 AND "
-								+ "(EXPIREDDT > SYSDATE OR EXPIREDDT IS NULL)")) {
-					
-					stmt.setString(1, userName.getValue().toUpperCase());
-					try (ResultSet rs = stmt.executeQuery()) {	
-						if (rs.next()) {		
-						
-							u.put(UserAttribute.PERSONID, rs.getString("ID"));
-							u.put(UserAttribute.PEOPLESOFTID, rs.getString("EMPLID"));
-							u.put(UserAttribute.DEPTID, rs.getString("DEPTID"));
-							u.put(UserAttribute.DEPTNAME, rs.getString("DEPTNAME"));
-							u.put(UserAttribute.CSD, rs.getString("CSD"));	
-							u.put(UserAttribute.CSD_DESCR, rs.getString("CSD_DESCR"));	
-							u.put(UserAttribute.BUSINESS_UNIT, rs.getString("BUSINESS_UNIT"));	
-							u.put(UserAttribute.COMPANY, rs.getString("CAMPUS"));															
-							
-							try (PreparedStatement st = c
-									.prepareStatement("select * from USERS where PERSONID = ? and ISACTIVE = 1")) {
-								st.setString(1, u.get(UserAttribute.PERSONID));
-								try (ResultSet ResultSet = st.executeQuery()) {								
-									while (ResultSet.next()) {
-										security.add(ResultSet.getString("ROLEID"));										
-									}																						
-								}
-							}							
-							
-							if(security.isEmpty()){
-								User.setUser(null);								
-								new Notification("User has not been assign a user role!", Notification.Type.WARNING_MESSAGE)
-									.show(Page.getCurrent());
-								return;
-							}
-								
-							u.setSecurityGroup(security);
-							
-							System.err.println("security---" + security);	
-							
-							if(security.contains("1") || security.contains("4")){
-								u.put(UserAttribute.USERLEVEL, "ADMIN");
-							}else if(security.contains("5") || security.contains("7") || 
-									security.contains("21")){
-								u.put(UserAttribute.USERLEVEL, "BUSINESS");
-							}else if(security.contains("3") || security.contains("24")){
-								u.put(UserAttribute.USERLEVEL, "CSD");
-							}else {
-								u.put(UserAttribute.USERLEVEL, "DEPT");
-							}
-														 
-							ArrayList<String> assignDept = new ArrayList<String>();
-							ArrayList<String> assignCSD = new ArrayList<String>();
-							ArrayList<String> assignBus = new ArrayList<String>();
-							
-							try (PreparedStatement st = c.prepareStatement(
-									"select * from USERROLESDEPT where PERSONID = ? and ISACTIVE = 1")) {
-								
-								st.setString(1, u.get(UserAttribute.PERSONID));
-								try (ResultSet ResultSet = st.executeQuery()) {
-									
-									while (ResultSet.next()) {
-										if (ResultSet.getString("ROLEID").equals("5")
-												|| ResultSet.getString("ROLEID").equals("7")
-												|| ResultSet.getString("ROLEID").equals("21")) {
-											assignBus.add(ResultSet.getString("BUSINES_UNIT"));
-										} else if (ResultSet.getString("ROLEID").equals("3")
-												|| ResultSet.getString("ROLEID").equals("24")) {
-											assignCSD.add(ResultSet.getString("CSD"));
-										} else {
-											assignDept.add(ResultSet.getString("DEPT"));
-										}
-									}
-								}
-							}
-
-							u.setAssignBus(assignBus);
-							u.setAssignCSD(assignCSD);
-							u.setAssignDept(assignDept);
-							
-							System.err.println("assignBus----" + assignBus);
-							System.err.println("assignCSD----" + assignCSD);
-							System.err.println("assignDept---" + assignDept);
-														
-							ContractsUI.get().getProjexViewNavigator()
-									.navigateTo(ContractViewProvider.Views.HOME.toString().toLowerCase());
-							
-							WebBrowser b = Page.getCurrent().getWebBrowser();
-							String ip = b.getAddress();
-							LoginHistoryQuery.addRecord(userName.getValue().toUpperCase(), ip);
-							
-						} else {
-							try (PreparedStatement st = c
-									.prepareStatement("select * from PILISTS where SSO_ID = ? and ISACTIVE = 1")) {
-								st.setString(1, userName.getValue().toUpperCase());
-								try (ResultSet rset = st.executeQuery()) {
-									if (rset.next()) {	
-										
-										security.add("8");									
-										u.setSecurityGroup(security);
-										System.err.println("security type: " + security);
-										
-										ContractsUI.get().getProjexViewNavigator().navigateTo(attemptedScreenAccess);
-									
-										WebBrowser b = Page.getCurrent().getWebBrowser();
-										String ip = b.getAddress();
-										LoginHistoryQuery.addRecord(userName.getValue().toUpperCase(), ip);
-									}
-								}
-							}					
-						}												
-					}
-				}										
-			} catch (SQLException e) {
-				System.out.println("LOGIN--[ERROR]1: " + e.getMessage());
-			} finally {
-				Pools.releaseConnection(Pools.Names.CONTRACT, c);
-				c = null;
-			}			 
+//			try {				
+//				c = Pools.getConnection(Pools.Names.RAYMOND);  
+//				try (PreparedStatement stmt = c
+//						.prepareStatement("select * from PERSONS where SSO_ID = ? AND ISACTIVE = 1 AND "
+//								+ "(EXPIREDDT > SYSDATE OR EXPIREDDT IS NULL)")) {
+//					
+//					stmt.setString(1, userName.getValue().toUpperCase());
+//					try (ResultSet rs = stmt.executeQuery()) {	
+//						if (rs.next()) {		
+//						
+//							u.put(UserAttribute.PERSONID, rs.getString("ID"));
+//							u.put(UserAttribute.PEOPLESOFTID, rs.getString("EMPLID"));
+//							u.put(UserAttribute.DEPTID, rs.getString("DEPTID"));
+//							u.put(UserAttribute.DEPTNAME, rs.getString("DEPTNAME"));
+//							u.put(UserAttribute.CSD, rs.getString("CSD"));	
+//							u.put(UserAttribute.CSD_DESCR, rs.getString("CSD_DESCR"));	
+//							u.put(UserAttribute.BUSINESS_UNIT, rs.getString("BUSINESS_UNIT"));	
+//							u.put(UserAttribute.COMPANY, rs.getString("CAMPUS"));															
+//							
+//							try (PreparedStatement st = c
+//									.prepareStatement("select * from USERS where PERSONID = ? and ISACTIVE = 1")) {
+//								st.setString(1, u.get(UserAttribute.PERSONID));
+//								try (ResultSet ResultSet = st.executeQuery()) {								
+//									while (ResultSet.next()) {
+//										security.add(ResultSet.getString("ROLEID"));										
+//									}																						
+//								}
+//							}							
+//							
+//							if(security.isEmpty()){
+//								User.setUser(null);								
+//								new Notification("User has not been assign a user role!", Notification.Type.WARNING_MESSAGE)
+//									.show(Page.getCurrent());
+//								return;
+//							}
+//								
+//							u.setSecurityGroup(security);
+//							
+//							System.err.println("security---" + security);	
+//							
+//							if(security.contains("1") || security.contains("4")){
+//								u.put(UserAttribute.USERLEVEL, "ADMIN");
+//							}else if(security.contains("5") || security.contains("7") || 
+//									security.contains("21")){
+//								u.put(UserAttribute.USERLEVEL, "BUSINESS");
+//							}else if(security.contains("3") || security.contains("24")){
+//								u.put(UserAttribute.USERLEVEL, "CSD");
+//							}else {
+//								u.put(UserAttribute.USERLEVEL, "DEPT");
+//							}
+//														 
+//							ArrayList<String> assignDept = new ArrayList<String>();
+//							ArrayList<String> assignCSD = new ArrayList<String>();
+//							ArrayList<String> assignBus = new ArrayList<String>();
+//							
+//							try (PreparedStatement st = c.prepareStatement(
+//									"select * from USERROLESDEPT where PERSONID = ? and ISACTIVE = 1")) {
+//								
+//								st.setString(1, u.get(UserAttribute.PERSONID));
+//								try (ResultSet ResultSet = st.executeQuery()) {
+//									
+//									while (ResultSet.next()) {
+//										if (ResultSet.getString("ROLEID").equals("5")
+//												|| ResultSet.getString("ROLEID").equals("7")
+//												|| ResultSet.getString("ROLEID").equals("21")) {
+//											assignBus.add(ResultSet.getString("BUSINES_UNIT"));
+//										} else if (ResultSet.getString("ROLEID").equals("3")
+//												|| ResultSet.getString("ROLEID").equals("24")) {
+//											assignCSD.add(ResultSet.getString("CSD"));
+//										} else {
+//											assignDept.add(ResultSet.getString("DEPT"));
+//										}
+//									}
+//								}
+//							}
+//
+//							u.setAssignBus(assignBus);
+//							u.setAssignCSD(assignCSD);
+//							u.setAssignDept(assignDept);
+//							
+//							System.err.println("assignBus----" + assignBus);
+//							System.err.println("assignCSD----" + assignCSD);
+//							System.err.println("assignDept---" + assignDept);
+//														
+//							MyUI.navigateTo("home");
+//							
+//							WebBrowser b = Page.getCurrent().getWebBrowser();
+//							String ip = b.getAddress();
+//							//LoginHistoryQuery.addRecord(userName.getValue().toUpperCase(), ip);
+//							
+//						} else {
+//							try (PreparedStatement st = c
+//									.prepareStatement("select * from PILISTS where SSO_ID = ? and ISACTIVE = 1")) {
+//								st.setString(1, userName.getValue().toUpperCase());
+//								try (ResultSet rset = st.executeQuery()) {
+//									if (rset.next()) {	
+//										
+//										security.add("8");									
+//										u.setSecurityGroup(security);
+//										System.err.println("security type: " + security);
+//										
+//										MyUI.get().getProjexViewNavigator().navigateTo(attemptedScreenAccess);
+//									
+//										WebBrowser b = Page.getCurrent().getWebBrowser();
+//										String ip = b.getAddress();
+//										//LoginHistoryQuery.addRecord(userName.getValue().toUpperCase(), ip);
+//									}
+//								}
+//							}					
+//						}												
+//					}
+//				}										
+//			} catch (SQLException e) {
+//				System.out.println("LOGIN--[ERROR]1: " + e.getMessage());
+//			} finally {
+//				Pools.releaseConnection(Pools.Names.RAYMOND, c);
+//				c = null;
+//			}			 
 		} else {
 			// if failed, show error message
+//			MyUI.navigateTo("home");//need to be deleted
 			User.setUser(null);
 			Notification.show("Login failed, please check your username/password and try again!", Type.ERROR_MESSAGE);
 			password.setValue("");
 			logger.debug("Authentication failed for {}", userName.getValue());
-		}*/
+		}
 	}
 }

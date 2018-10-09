@@ -21,11 +21,139 @@
 	.v-treegrid-cell.room{
 		text-align:left;
 	}
-	//.test{
-	//border:1px black solid;
-	//}
-	//. button-test{
-	//}
+	
+	
+	.v-tabsheet-ts{
+        .v-tabsheet-tabitemcell{
+            .v-caption {
+                font-weight:bold;
+                background-color: #404040;
+                color: #ffffff;
+            }
+            .v-tabsheet-tabitem-selected .v-caption {
+	            background-color: #FFA500;
+	            color: #404040;
+            }
+        }
+    }
+    
+	  .button { 
+	  	width:150px;
+		border-radius: 3px; 
+		background: #404040; 
+		cursor: pointer; 
+		outline: none; 
+		color: white; 
+		font-size: 17px; 
+	}
+	.button:hover { 
+		background: #FFA500;
 	}
 	
+	.bord {
+		padding-top: 5px;
+		padding-bottom: 10px;
+		padding-left:10px;
+		padding-right:10px;
+		border-style: groove;
+	}
+	
+	.topbarchoices {
+		
+	}
+	
+	.underline {
+		border-bottom-style : solid;
+		padding-bottom: 5px;
+	}
+	
+	.v-grid-gd {
+	  .v-grid-scroller, .v-grid-scroller-horizontal { }
+	  .v-grid-tablewrapper {
+	    .v-grid-header {
+	      .v-grid-row {
+	        .v-grid-cell, .frozen, .v-grid-cell-focused { 
+	        	font-weight:bold; 
+	        	font:20px;
+	        	background:#FFA500;
+	        	color:#404040;
+	        }
+	      }
+	    }
+	    .v-grid-body {
+	      .v-grid-row,
+	      .v-grid-row-stripe,
+	      .v-grid-row-has-data {
+	        .v-grid-cell, .frozen, .v-grid-cell-focused {}
+	      }
+	    }
+	    .v-grid-footer {
+	      .v-grid-row {
+	        .v-grid-cell, .frozen, .v-grid-cell-focused {}
+	      }
+	    }
+	  }
+	  .v-grid-header-deco { }
+	  .v-grid-footer-deco { }
+	  .v-grid-horizontal-scrollbar-deco { }
+	  .v-grid-editor {
+	    .v-grid-editor-cells { }
+	    .v-grid-editor-footer {
+	      .v-grid-editor-message { }
+	      .v-grid-editor-buttons {
+	        .v-grid-editor-save { }
+	        .v-grid-editor-cancel { }
+	      }
+	    }
+	  }
+	}
+	
+	.v-treegrid-tgd {
+    .v-treegrid-scroller, .v-treegrid-scroller-horizontal { }
+    .v-treegrid-tablewrapper {
+      .v-treegrid-header {
+        .v-treegrid-row {
+          .v-treegrid-cell, .frozen, .v-treegrid-cell-focused { 
+            font-weight:bold; 
+            font:20px;
+            background:#FFA500;
+            color:#404040;
+          }
+        }
+      }
+      .v-treegrid-body {
+        .v-treegrid-row,
+        .v-treegrid-row-stripe,
+        .v-treegrid-row-has-data {
+          .v-treegrid-cell, .frozen, .v-treegrid-cell-focused {}
+        }
+      }
+      .v-treegrid-footer {
+        .v-treegrid-row {
+          .v-treegrid-cell, .frozen, .v-treegrid-cell-focused {}
+        }
+      }
+    }
+    .v-treegrid-header-deco { }
+    .v-treegrid-footer-deco { }
+    .v-treegrid-horizontal-scrollbar-deco { }
+    .v-treegrid-editor {
+      .v-treegrid-editor-cells { }
+      .v-treegrid-editor-footer {
+        .v-treegrid-editor-message { }
+        .v-treegrid-editor-buttons {
+          .v-treegrid-editor-save { }
+          .v-treegrid-editor-cancel { }
+        }
+      }
+    }
+  }
+
+	.v-label-lab {
+			font-weight:bold; 
+			  font:30px;
+	}
+	    
+    
+    
 }

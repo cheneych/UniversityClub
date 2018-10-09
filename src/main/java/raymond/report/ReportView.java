@@ -57,7 +57,7 @@ public class ReportView extends TopBarView implements View {
 	TreeDataProvider<Orderitems> dataProvider = (TreeDataProvider<Orderitems>) treeGrid.getDataProvider();
 	TreeData<Orderitems> data = dataProvider.getTreeData();
 	public OrderForm itemsform = new OrderForm(this);
-	Button next = new Button("Next");
+	Button next = new Button("next");
 	
 	public ReportView()  {
 		init();
@@ -66,6 +66,8 @@ public class ReportView extends TopBarView implements View {
 	public void init()  {
 		eventProcess();
 		dataProcess();
+		treeGrid.setStyleName("tgd");
+		next.setStyleName("button");  next.setIcon(VaadinIcons.ARROW_FORWARD);
 		VerticalLayout l1 = new VerticalLayout();
 		l1.addComponents(next, treeGrid, itemsform);
 		addComponent(l1);

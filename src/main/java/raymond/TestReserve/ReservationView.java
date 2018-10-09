@@ -55,9 +55,9 @@ public class ReservationView extends TopBarView implements View {
 	DateTimeField eDate = new DateTimeField("End Time", LocalDateTime.now());
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-	Button button=new Button("Search Rooms");
-	Button nStep=new Button("Next Step");
-	Button comfirm=new Button("Comfirm");
+	Button button=new Button("Rooms");
+	Button nStep=new Button("next");
+	Button comfirm=new Button("confirm");
 
 	FormLayout form1=new FormLayout();
 	
@@ -75,6 +75,10 @@ public class ReservationView extends TopBarView implements View {
 	public void init() {
 		dataProcess();
 		eventProcess();
+		treeGrid.setStyleName("tgd");
+		nStep.setStyleName("button"); nStep.setIcon(VaadinIcons.ARROW_FORWARD);
+		button.setStyleName("button"); button.setIcon(VaadinIcons.SEARCH);
+		comfirm.setStyleName("button"); comfirm.setIcon(VaadinIcons.ENTER_ARROW);
 		//first layer
 		//second layer
 		final HorizontalLayout layout1=new HorizontalLayout();

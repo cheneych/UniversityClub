@@ -58,7 +58,7 @@ public class HomeView extends TopBarView implements View {
 	public List<Order> orders = new ArrayList<>();
 	
 	public HomeView() {
-		init();
+		//init();
 	}
 
 	public void init() {

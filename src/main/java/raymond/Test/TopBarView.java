@@ -52,6 +52,13 @@ public abstract class TopBarView extends VerticalLayout implements View {
 	private MenuBar barmenu;
 
 	private Image muImage;
+	
+	
+	//Components
+		MenuBar choices = new MenuBar();
+//		private Button create = new Button("Create a new Reservation");
+//		private Button searchPastBookings = new Button("Search past bookings");
+//		private Button settings = new Button("Settings");
 
 	/**
 	 * all views need extends this view
@@ -60,6 +67,8 @@ public abstract class TopBarView extends VerticalLayout implements View {
 		super();
 		init();
 		layout();
+		eventProcess();
+		dataProcess();
 	}
 
 	/**
@@ -72,6 +81,7 @@ public abstract class TopBarView extends VerticalLayout implements View {
 	}
 
 	private void init() {
+		choices.addStyleName("choices");
 
 		muImage = new Image() {
 			{
@@ -92,10 +102,11 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 
 		barmenu = new MenuBar();
-		MenuItem name=barmenu.addItem("Raymond",null,null);
+		MenuItem name=barmenu.addItem("MU",null,null);
 		name.setIcon(VaadinIcons.USER);
 		MenuItem account1=name.addItem("Contact us",new ThemeResource("icons/PNG/Help/Help_16x16.png"),null);
 		MenuItem signout1=name.addItem("Logout",new ThemeResource("icons/PNG/Qing/Sign_Out.png"),null);
+		name.setStyleName("MU");
 		
 		signout1.setCommand(new Command() {
 			public void menuSelected(MenuItem selectedItem) {
@@ -111,6 +122,27 @@ public abstract class TopBarView extends VerticalLayout implements View {
 			}
 		});
 		
+		choices.setStyleName("topbarchoices");
+		
+		MenuItem create = choices.addItem("Create New Reservation", new MenuBar.Command() {
+			   @Override
+               public void menuSelected(MenuItem selectedItem) {
+				   MyUI.navigateTo("newinfo");
+               }
+
+		});
+		MenuItem searchPastBookings = choices.addItem("Search Past Bookings", new MenuBar.Command() {
+			   @Override
+               public void menuSelected(MenuItem selectedItem) {
+				   MyUI.navigateTo("search");
+               }
+		});
+		MenuItem settings = choices.addItem("Settings", new MenuBar.Command() {
+			   @Override
+               public void menuSelected(MenuItem selectedItem) {
+				   MyUI.navigateTo("settings");
+               }
+		});
 //		logout = new Button("Log Out") {
 //			{
 //				addStyleName("btnwithborder");
@@ -184,8 +216,19 @@ public abstract class TopBarView extends VerticalLayout implements View {
 				}
 			}
 		});
+		addComponent(new HorizontalLayout() {
+			{
+				setHeight("50%");
+				if (raymond.Test.User.getUser() == null) {
 
-		
+				} else {
+					addComponents(choices);
+				}
+				setSizeFull();
+				setStyleName("underline");
+			}
+			
+		});
 		//addComponent(buttonmenubar);
 		// main body to add content
 //		HorizontalLayout mainBodyComponent = new HorizontalLayout() {
@@ -224,6 +267,12 @@ public abstract class TopBarView extends VerticalLayout implements View {
 	//	
 	protected void setMenuVisible(boolean value) {
 		//		 barmenu.setVisible(value);
+	}
+	
+	private void eventProcess(){}
+
+	private void dataProcess() {
+		
 	}
 
 	/**

@@ -16104,3 +16104,60 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .v-treegrid-cell.room {
 	text-align: left;
 }
+
+.mytheme .v-tabsheet-ts .v-tabsheet-tabitemcell .v-caption {
+	font-weight: bold;
+	background-color: #404040;
+	color: #ffffff;
+}
+
+.mytheme .v-tabsheet-ts .v-tabsheet-tabitemcell .v-tabsheet-tabitem-selected .v-caption {
+	background-color: #FFA500;
+	color: #404040;
+}
+
+.mytheme .button {
+	width: 150px;
+	border-radius: 3px;
+	background: #404040;
+	cursor: pointer;
+	outline: none;
+	color: white;
+	font-size: 17px;
+}
+
+.mytheme .button:hover {
+	background: #FFA500;
+}
+
+.mytheme .bord {
+	padding-top: 5px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-style: groove;
+}
+
+.mytheme .underline {
+	border-bottom-style: solid;
+	padding-bottom: 5px;
+}
+
+.mytheme .v-grid-gd .v-grid-tablewrapper .v-grid-header .v-grid-row .v-grid-cell, .mytheme .v-grid-gd .v-grid-tablewrapper .v-grid-header .v-grid-row .frozen, .mytheme .v-grid-gd .v-grid-tablewrapper .v-grid-header .v-grid-row .v-grid-cell-focused {
+	font-weight: bold;
+	font: 20px;
+	background: #FFA500;
+	color: #404040;
+}
+
+.mytheme .v-treegrid-tgd .v-treegrid-tablewrapper .v-treegrid-header .v-treegrid-row .v-treegrid-cell, .mytheme .v-treegrid-tgd .v-treegrid-tablewrapper .v-treegrid-header .v-treegrid-row .frozen, .mytheme .v-treegrid-tgd .v-treegrid-tablewrapper .v-treegrid-header .v-treegrid-row .v-treegrid-cell-focused {
+	font-weight: bold;
+	font: 20px;
+	background: #FFA500;
+	color: #404040;
+}
+
+.mytheme .v-label-lab {
+	font-weight: bold;
+	font: 30px;
+}

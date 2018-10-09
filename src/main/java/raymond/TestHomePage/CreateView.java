@@ -49,9 +49,8 @@ public class CreateView extends TopBarView implements View {
 	final transient Logger logger = LoggerFactory.getLogger(HomeView.class);
 	//Components
 	private Button reserve = new Button("Create");
-	private Button home = new Button("HOME");
 
-	TextField member = new TextField("Customer ID");
+	TextField member = new TextField("");
 	
 	private StandardGridConfigurator configurator;
 	//global variable
@@ -63,17 +62,12 @@ public class CreateView extends TopBarView implements View {
 	public void init() {
 		eventProcess();
 		dataProcess();
-		final VerticalLayout layout2 = new VerticalLayout(); 
 		final VerticalLayout layout5 = new VerticalLayout(); 
 		layout5.addComponents(member, reserve);
-		layout2.addComponents(home, layout5);
-		addComponents(layout2);
+		addComponents(layout5);
 	}
 
 	private void eventProcess(){
-		home.addClickListener(e->{
-			MyUI.navigateTo("home"); 
-		});        
 
 		reserve.addClickListener(e->{
 			String custid = member.getValue();

@@ -38,6 +38,7 @@ public class ExecuteReport {
 	 
 	        // Open the report design
 	        IReportRunnable design = null;
+	        // /home/raymond/reports/questionnaire.rptdesign - for linux server
 	        design = engine.openReportDesign("C:/birt4.8/ReportEngine/samples/questionnaire.rptdesign"); 
 	        IRunAndRenderTask task = engine.createRunAndRenderTask(design);  
 	        task.validateParameters();

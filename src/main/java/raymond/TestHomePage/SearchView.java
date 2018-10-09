@@ -48,9 +48,8 @@ import com.vaadin.external.org.slf4j.LoggerFactory;
 public class SearchView extends TopBarView implements View {
 	final transient Logger logger = LoggerFactory.getLogger(HomeView.class);
 	//Components
-	private Button home = new Button("HOME");
-	private Button dt = new Button("Search by Date");
-	private Button cus = new Button("Search by Customer"); 
+	private Button dt = new Button("Date");
+	private Button cus = new Button("Customer"); 
 	
 	TextField customer = new TextField();
 
@@ -70,7 +69,7 @@ public class SearchView extends TopBarView implements View {
 	public void init() {
 		eventProcess();
 		dataProcess();
-		final VerticalLayout layout2 = new VerticalLayout(); 
+		grid.setStyleName("gd");
 		final VerticalLayout layout4 = new VerticalLayout(); 
 		final HorizontalLayout layout6 = new HorizontalLayout(); 
 		final HorizontalLayout layout7 = new HorizontalLayout(); 
@@ -78,8 +77,7 @@ public class SearchView extends TopBarView implements View {
 		layout7.addComponents(dt, cus);
 		layout4.addComponents(pstbkg, layout7, layout6, grid);
 		//layout2.setSizeFull();
-		layout2.addComponents(home,layout4);
-		addComponents(layout2);
+		addComponents(layout4);
 	}
 
 	private void eventProcess(){
@@ -97,10 +95,6 @@ public class SearchView extends TopBarView implements View {
 			dt.setVisible(false);
 			date.setVisible(false);
 		});
-		
-		home.addClickListener(e->{
-			MyUI.navigateTo("home"); 
-		});        
 		
 		date.addValueChangeListener(e->{ //1 set grid visible 2 get user typed value 3 get data from db 
 			grid.setVisible(true); 
@@ -142,6 +136,8 @@ public class SearchView extends TopBarView implements View {
 	}
 
 	private void dataProcess() {
+		dt.addStyleName("button"); dt.setIcon(VaadinIcons.SEARCH);
+		cus.addStyleName("button"); cus.setIcon(VaadinIcons.SEARCH);
 		customer.setVisible(false);
 		customer.setPlaceholder("Type customer ID or Name");
 		customer.setWidth("300px");

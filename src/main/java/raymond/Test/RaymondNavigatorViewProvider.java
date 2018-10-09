@@ -23,6 +23,7 @@ public class RaymondNavigatorViewProvider implements ViewProvider {
 
 	final transient Logger logger = LoggerFactory.getLogger(RaymondNavigatorViewProvider.class);
 	
+	
 	@Override
 	public String getViewName(String viewAndParameters) {
 		
@@ -38,9 +39,9 @@ public class RaymondNavigatorViewProvider implements ViewProvider {
 	@Override
 	public View getView(String viewName) {
 		
-		/* if(User.getUser()==null) {
+		 if(User.getUser()==null) {
 			return new LoginView();
-		} */
+		} 
 		
 		// TODO Auto-generated method stub
 		switch (getViewName(viewName)) {

@@ -42,6 +42,8 @@ import raymond.Test.*;
 
 @SuppressWarnings("serial")
 public class moreInfoView extends TopBarView implements View {
+	private Button reserve = new Button("Create");
+	TextField member = new TextField("");
 	//Components
 	TextField booking=new TextField("Booking Name");
 	TextField fName=new TextField("Function Name");
@@ -69,18 +71,31 @@ public class moreInfoView extends TopBarView implements View {
 	public void init() {
 		dataProcess();
 		eventProcess();
+		confirm.setStyleName("button"); confirm.setIcon(VaadinIcons.ARROW_FORWARD);
+		reserve.setStyleName("button"); reserve.setIcon(VaadinIcons.ENTER);
+		save.setStyleName("button"); save.setIcon(VaadinIcons.STORAGE);
+		final HorizontalLayout layout5 = new HorizontalLayout(); 
+		layout5.addComponents(member, reserve);
+		layout5.setComponentAlignment(reserve, Alignment.BOTTOM_LEFT);
+		layout5.setComponentAlignment(member, Alignment.MIDDLE_RIGHT);
+		layout5.setStyleName("bord");
+		layout5.setSizeFull();
 		//first layer
+		final VerticalLayout layout1=new VerticalLayout();
 		final HorizontalLayout layout2=new HorizontalLayout();
 		layout2.addComponents(form1,form2);
-		layout2.setSizeFull();
+		layout1.addComponents(layout2, notes);
+		layout1.setSizeFull();
+		layout1.setStyleName("bord");
 		//second layer
 		final HorizontalLayout layout3 = new HorizontalLayout();
 		layout3.addComponents(save, confirm);
-		addComponents(layout2,notes,layout3);	
+		addComponents(layout5,layout1, layout3);	
 		setComponentAlignment(layout3, Alignment.MIDDLE_RIGHT);
 	}
 
 	private void dataProcess() {
+		member.setPlaceholder("Type Customer ID");
 		confirm.setVisible(false);
 		booking.setValue(" "); postas.setValue("0"); fName.setValue(" "); gua.setValue("0"); 
         expected.setValue("0"); set.setValue("0"); funcpas.setValue("0"); notes.setValue("n/a");
@@ -98,6 +113,52 @@ public class moreInfoView extends TopBarView implements View {
 	}
 
 	private void eventProcess() {
+		
+		reserve.addClickListener(e->{
+			String custid = member.getValue();
+			System.out.println("custid " + custid);
+			if (!custid.equals("")) { 
+				/* 1 check if id exists 
+				   2 create a new event
+				   3 redirect to new page */
+				IsValidCusService service = new IsValidCusService(custid);
+				int count = service.getData();
+				if (count == 1) {
+					//set custid in session
+					VaadinService.getCurrentRequest().getWrappedSession().setAttribute("cur_custid", custid);
+					//insert into evt
+					try {
+						service.storeRow(custid);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					//if create, then create_or_modify = 0
+					VaadinService.getCurrentRequest().getWrappedSession().setAttribute("create_or_modify", 0);
+					Notification notif = new Notification("Successful", "Successful", 
+							Notification.TYPE_TRAY_NOTIFICATION);
+					notif.setDelayMsec(1000);
+					notif.setPosition(Position.MIDDLE_CENTER);
+					notif.setStyleName("mystyle"); //change css of the notif
+					notif.show(Page.getCurrent()); 
+					reserve.setVisible(false);
+					//redirect
+					//MyUI.navigateTo("newinfo"); 
+				} else {
+					//pop-up window
+					Notification notif = new Notification("Warning", "Customer does not exist", 
+															Notification.TYPE_WARNING_MESSAGE);
+					notif.setDelayMsec(1000);
+					notif.setPosition(Position.MIDDLE_CENTER);
+					notif.setStyleName("mystyle"); //change css of the notif
+					notif.show(Page.getCurrent()); 
+				}
+			}
+			else {
+				//for test purpose, need to be deleted later
+				System.out.println("test");
+				MyUI.navigateTo("newinfo"); 
+			}
+		});
 		
 		save.addClickListener(e->{
 			if (booking.getValue().equals(" ") || fName.getValue().equals(" ") ) {
@@ -124,6 +185,7 @@ public class moreInfoView extends TopBarView implements View {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
+				save.setVisible(false);
 				confirm.setVisible(true);
 			}
 		});

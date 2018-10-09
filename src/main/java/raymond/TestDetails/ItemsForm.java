@@ -5,6 +5,7 @@ import com.vaadin.data.converter.StringToBigDecimalConverter;
 import com.vaadin.data.converter.StringToDoubleConverter;
 import com.vaadin.data.converter.StringToIntegerConverter;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
@@ -43,6 +44,8 @@ public class ItemsForm extends FormLayout {
 		
 		save.addClickListener(e->save());
 		save.setClickShortcut(KeyCode.ENTER);
+		save.addStyleName("button");
+		save.setIcon(VaadinIcons.STORAGE);
 	}
 	
 	public void setItems(Items item) {

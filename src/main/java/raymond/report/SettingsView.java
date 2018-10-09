@@ -4,10 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.xerces.impl.dv.ValidatedInfo;
+
 import com.vaadin.annotations.Theme;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
@@ -31,7 +34,7 @@ public class SettingsView extends TopBarView implements View {
 	TextField tab1tf1 = new TextField("Room Name");
 	TextField tab1tf2 = new TextField("Charge");
 	Button addroom = new Button("Add");
-	//item
+	//items
 	FormLayout tab2 = new FormLayout();
 	TextField tab2tf1 = new TextField("Item Name");
 	TextField tab2tf2 = new TextField("Charge");
@@ -77,12 +80,14 @@ public class SettingsView extends TopBarView implements View {
 		dataProcess();
 		eventProcess();
 		TabSheet tabsheet=new TabSheet();
+		tabsheet.addStyleName("ts");
 		//room
 		tab1tf1.setIcon(VaadinIcons.USER);
 		tab1tf1.setRequiredIndicatorVisible(true);
 		tab1tf2.setIcon(VaadinIcons.MONEY);
 		tab1tf2.setRequiredIndicatorVisible(true);
 		tab1.addComponents(tab1tf1, tab1tf2, addroom);
+		
 		//item
 		tab2tf1.setIcon(VaadinIcons.LIST); tab2tf1.setRequiredIndicatorVisible(true);
 		tab2tf2.setIcon(VaadinIcons.MONEY); tab2tf2.setRequiredIndicatorVisible(true);
@@ -118,7 +123,6 @@ public class SettingsView extends TopBarView implements View {
 		HorizontalLayout h5 = new HorizontalLayout(); h5.addComponents(tab4tf2, tab4tf3);
 		HorizontalLayout h6 = new HorizontalLayout(); h6.addComponents(tab4cb4, tab4tf5);
 		tab4.addComponents(h4,h5,h6,addsales);
-		
 		tabsheet.addTab(tab1,"Add room");
 		tabsheet.addTab(tab2, "Add item");
 		tabsheet.addTab(tab3, "Add Customer");
@@ -212,6 +216,10 @@ public class SettingsView extends TopBarView implements View {
 	}
 
 	private void dataProcess() {
+		addsales.addStyleName("button"); addsales.setIcon(VaadinIcons.FILE_ADD);
+		additem.addStyleName("button"); additem.setIcon(VaadinIcons.FILE_ADD);
+		addcus.addStyleName("button"); addcus.setIcon(VaadinIcons.FILE_ADD);
+		addroom.addStyleName("button"); addroom.setIcon(VaadinIcons.FILE_ADD);
 		//tab2cb1
 		for (int i = 0; i < servcat.CateList.size(); i++)
 			category.add(servcat.CateList.get(i).getHeaderdesc());

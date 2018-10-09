@@ -56,9 +56,9 @@ public class DetailsView extends TopBarView implements View {
 	DateTimeField sDate = new DateTimeField("Start Time", LocalDateTime.now());
 	DateTimeField eDate = new DateTimeField("End Time", LocalDateTime.now());
 
-	Button viewall = new Button("View All");
-	Button comfirm = new Button("Comfirm");
-	Button finish = new Button("Next");
+	Button viewall = new Button("");
+	Button comfirm = new Button("confirm");
+	Button finish = new Button("next");
 
 	ComboBox<String> cato = new ComboBox<>("Catogory");
 	ComboBox<String> serv = new ComboBox<>("service Description");
@@ -97,6 +97,10 @@ public class DetailsView extends TopBarView implements View {
 	public void init() {
 		dataProcess();
 		eventProcess();
+		listGrid.setStyleName("gd"); itemGrid.setStyleName("gd");
+		viewall.setStyleName("button"); viewall.setIcon(VaadinIcons.SEARCH);
+		comfirm.setStyleName("button"); comfirm.setIcon(VaadinIcons.ENTER);
+		finish.setStyleName("button"); finish.setIcon(VaadinIcons.ARROW_FORWARD);
 		// first layer
 		// second layer
 

@@ -54,7 +54,7 @@ import raymond.TestInfo.MoneyDataService;
 @SuppressWarnings("serial")
 @Theme("mytheme")
 public class ChargeView extends TopBarView implements View {
-	Label tit = new Label("Summaryof Charges");
+	Label tit = new Label("Summary of Charges");
 	Grid<Money> charges = new Grid<Money>(Money.class);
 	Button next = new Button("next");
 	
@@ -65,6 +65,9 @@ public class ChargeView extends TopBarView implements View {
 	public void init()  {
 		eventProcess();
 		dataProcess();
+		charges.setStyleName("gd");
+		tit.setStyleName("lab");
+		next.setStyleName("button");  	next.setIcon(VaadinIcons.ARROW_FORWARD);
 		addComponents(tit, charges, next);
 		setComponentAlignment(next, Alignment.MIDDLE_RIGHT);
 	}
