@@ -115,4 +115,36 @@ BEGIN
 	A.evtstart2 = datetime, A.evtend2 = datetime;
 END ;
 
+PROCEDURE add_sysroom_info (name IN VARCHAR2, money in  NUMBER) IS
+BEGIN
+	INSERT INTO SFRDT (FRNAME, FRHOURCHG, FRQTRCHG) 
+	VALUES    (name, money, money);
+END;
+
+PROCEDURE add_sysitem_info (name IN VARCHAR2, money in  NUMBER, id IN NUMBER) IS
+BEGIN
+	INSERT INTO SERVSETUP(SERVITEMNAME, SERVITEMCHRG, SERVTYPE) 
+	VALUES    (name, money, id);
+END;
+
+PROCEDURE add_syscus_info (name IN VARCHAR2, phone IN VARCHAR2, 
+						   add IN VARCHAR2, city IN VARCHAR2,  
+						   state IN VARCHAR2, post IN VARCHAR2,
+						   badd IN VARCHAR2, bcity IN VARCHAR2,
+						   bstate IN VARCHAR2, bpost IN VARCHAR2) IS
+BEGIN
+	INSERT INTO CUSTT(CUSTNAME, CUSTPHONE, CUSTADD1, CUSTCITY, CUSTSTATE,
+					  CUSTPOSTCODE, CUSTBADD1, CUSTBCITY, CUSTBSTATE, CUSTBPOSTCODE) 
+	VALUES    (name, phone, add, city, state, post, badd, bcity, bstate, bpost);
+END;
+
+PROCEDURE add_syssales_info (lname IN VARCHAR2, fname IN VARCHAR2, 
+						   password IN VARCHAR2, loginid IN VARCHAR2,
+						   titleid IN NUMBER, email IN VARCHAR2) IS
+BEGIN
+	INSERT INTO SALPT(LASTNAME, FIRSTNAME, PASSWD, LOGINID, GROUPID,
+					  EMAILADDRESS) 
+	VALUES    (lname, fname, password, loginid, titleid, email);
+END;
+
 END TEST;
