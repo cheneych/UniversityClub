@@ -22,4 +22,18 @@ PROCEDURE delItems (id in NUMBER, flag IN NUMBER);
 
 PROCEDURE evt_start_end_time(datetime IN DATE, id IN NUMBER);
 
+PROCEDURE add_sysroom_info (name IN VARCHAR2, money in  NUMBER);
+
+PROCEDURE add_sysitem_info (name IN VARCHAR2, money in  NUMBER, id IN NUMBER);
+
+PROCEDURE add_syscus_info (name IN VARCHAR2, phone IN VARCHAR2, 
+						   add IN VARCHAR2, city IN VARCHAR2,  
+						   state IN VARCHAR2, post IN VARCHAR2,
+						   badd IN VARCHAR2, bcity IN VARCHAR2,
+						   bstate IN VARCHAR2, bpost IN VARCHAR2);
+
+PROCEDURE add_syssales_info (lname IN VARCHAR2, fname IN VARCHAR2, 
+						   password IN VARCHAR2, loginid IN VARCHAR2,
+						   titleid IN NUMBER, email IN VARCHAR2);
+
 END TEST;
