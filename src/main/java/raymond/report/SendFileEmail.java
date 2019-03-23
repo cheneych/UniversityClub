@@ -39,7 +39,7 @@ public class SendFileEmail
       Session session = Session.getDefaultInstance(properties,new Authenticator(){
         public PasswordAuthentication getPasswordAuthentication()
         {
-         return new PasswordAuthentication("ccv5f@missouri.edu", "8888Bjayh"); //发件人邮件用户名、密码
+         return new PasswordAuthentication("ccv5f@missouri.edu", "xxxxxx"); //发件人邮件用户名、密码
         }
        });
  
